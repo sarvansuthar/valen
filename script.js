@@ -15,6 +15,22 @@ yesBtn.addEventListener('click', () => {
     // audio.play();
 });
 
+// Array of messages for the No button
+const noButtonTexts = [
+    "No",
+    "Are you sure?",
+    "Really? 🥺",
+    "I'll be sad... 😢",
+    "Please reconsider 💔",
+    "Think again! 🙏",
+    "You're breaking my heart 💔",
+    "One more chance? 🥹",
+    "Pretty please? 🌹",
+    "Final answer? 😭"
+];
+
+let noClickCount = 0;
+
 // Function to move the No button away
 function moveNoButton() {
     const box = document.querySelector('.valentine-box');
@@ -32,6 +48,16 @@ function moveNoButton() {
     noBtn.style.left = randomX + 'px';
     noBtn.style.top = randomY + 'px';
     noBtn.style.transition = 'all 0.3s ease';
+
+    // Change button text
+    noClickCount++;
+    if (noClickCount < noButtonTexts.length) {
+        noBtn.textContent = noButtonTexts[noClickCount];
+    } else {
+        // Keep cycling through the last few messages
+        const index = ((noClickCount - 1) % 3) + 7; // Cycles through last 3 messages
+        noBtn.textContent = noButtonTexts[index];
+    }
 }
 
 // No button handlers - make it move away on hover (desktop) and click (mobile)!
